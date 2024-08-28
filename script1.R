@@ -140,5 +140,151 @@ sqSumPrint<-function(x,y){
 sqSumPrint(2,3)
 
 mat=cbind(c(3,0,3,3),c(3,0,0,0),c(3,0,0,3),c(1,1,0,0),c(1,1,1,0),c(1,1,1,0))
-result<-apply(mat,1,sum)
+result<-apply(mat,1,sum) # second paramter indicates start of index
 result
+
+input=c(1,2,3)
+lapply(input,function(x) x^2)
+
+Xs=0:5
+Ys=c(2,2,2,3,3,3)
+result<-mapply(function(x,y) sum(x,y),Xs,Ys)
+result
+
+result=Xs+Ys
+result
+
+colSums(mat)
+rowSums(mat)
+
+
+# Exercies Ch2
+2 + 3
+sqrt(36)
+log10(1000)
+log2(32)
+x <- 2 + 3 + 4
+abs(5-145)
+
+
+x <- sqrt(625) / 5
+x
+
+x <- x * 10000
+x
+
+vec <- c(1, 2, 3, 5, 10)
+vec
+
+length(vec)
+
+vec <- c(2:15)
+vec
+
+rep(x=4, times=10)
+
+c(TRUE, FALSE, TRUE, FALSE)
+
+genes = c("PAX6", "ZIC2", "OCT4", "SOX2")
+genes[c(1, 2)]
+
+myvec=1:5
+# the length of the logical vector 
+# should be equal to length(myvec) 
+myvec[c(TRUE,TRUE,FALSE,FALSE,FALSE)] 
+myvec[c(TRUE,FALSE,FALSE,FALSE,TRUE)]
+
+myvec > 3
+myvec == 4
+myvec <= 2
+myvec != 4
+
+logicals <- myvec > 2
+myvec[logicals]
+
+matrix(1:15, nrow = 5, ncol = 3)
+mat <- matrix(1:15, nrow = 5, ncol = 3, byrow = TRUE)
+mat[1:3, 1:3]
+mat2 <- mat[4:5, ]
+cols <- mat[, 1:2]
+class(cols)
+
+df <- data.frame(col1 = 1:5, col2 = c("a", "b", "c", "e", "f"), col3 = 5:1)
+df
+
+df[1:2, 1:2]
+df[4:5, ]
+
+df$col2
+df[, 2]
+
+rows <- df[, 1] > 3
+rows1 <- df$col1[rows]
+df[rows1, ]
+
+rows <- df[, 1] >= 3
+rows1 <- df$col1[rows]
+df[rows1, ]
+
+as.matrix(df) # turns values into strings
+
+mylist <- list(name = "Fred", surname = "Rada", status = "Married", gender = "Male")
+
+mylist$name
+
+mylist$gender
+
+mylist[1]
+mylist[4]
+
+myfactor <- factor(c("a", "b", "c", "d", "e"))
+
+myc <- c("a", "b", "c", "d")
+
+myfact <- as.factor(myc)
+as.character(myfact)
+
+cpgtFilePath=system.file("extdata",
+                         "CpGi.table.hg18.txt",
+                         package="compGenomRData")
+cpgtFilePath
+cpgiSepComma=read.table(cpgtFilePath,header=TRUE,sep=",", stringsAsFactors = FALSE, nrows = 10)
+head(cpgiSepComma)
+
+cpgiSepComma
+
+
+cpgtFilePath=system.file("extdata",
+                         "CpGi.table.hg18.txt",
+                         package="compGenomRData")
+cpgtFilePath
+cpgiSepComma=read.table(cpgtFilePath,header=FALSE,sep=",")
+
+write.table(cpgiSepComma,file="my.cpgi.file2.txt",
+            row.names=FALSE,col.names=FALSE, quote = FALSE, sep = "\t")
+
+tab <- read.table("my.cpgi.file.txt", header=TRUE, row.names=NULL)
+tab2 <- read.table("my.cpgi.file2.txt", header=TRUE, row.names=NULL)
+
+tab2[1:10,]
+tab2[, 1:3]
+
+chr1s <- tab2[tab2$row.names == "chr1", ]
+
+
+cpgtFilePath1=system.file("extdata",
+                         "rn4.refseq.bed",
+                         package="compGenomRData")
+
+cpgtFilePath2=system.file("extdata",
+                          "rn4.refseq2name.txt",
+                          package="compGenomRData")
+
+ref1 <- read.table(cpgtFilePath1,header=FALSE)
+ref2 <- read.table(cpgtFilePath2,header=FALSE)
+
+head(ref1)
+head(ref2)
+
+new.df <- merge(x = ref1, y = ref2, by.x = "V4", by.y = "V1")
+head(new.df) # CORRECT ANS
