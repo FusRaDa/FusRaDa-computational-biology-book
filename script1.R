@@ -288,3 +288,93 @@ head(ref2)
 
 new.df <- merge(x = ref1, y = ref2, by.x = "V4", by.y = "V1")
 head(new.df) # CORRECT ANS
+
+set.seed(1001)
+x1=1:100+rnorm(100,mean=0,sd=15)
+y1=1:100
+
+plot(x1, y1, main = "My Plot", xlab = "X-axis Label", ylab = "Y-axis Label", col="red", pch=19)
+corval <- cor(x1, y1)
+mtext(side = 3, text = paste("Correlation Coefficient: ", round(corval, digits = 2),  sep = " "))
+
+hist(x1, main = "My Histogram", col = "blue", xlab = "My X-axis", ylab = "My Y-axis")
+
+boxplot(x1, y1, main="My two boxplots", horizontal = TRUE)
+
+par(mfrow=c(2,1))
+
+boxplot(x1)
+hist(x1)
+
+par(mfrow=c(1, 2))
+
+boxplot(x1)
+hist(x1)
+
+par(mfrow=c(1,1)) 
+x2=1:1000+rnorm(1000,mean=0,sd=200)
+y2=1:1000
+plot(x2,y2,pch=19,col="blue")
+
+smoothScatter(x2,y2,
+              colramp=heat.colors)
+colramp = colorRampPalette(c("white","blue", "green","yellow","red"))
+
+
+cpgtFilePath=system.file("extdata",
+                         "CpGi.table.hg18.txt",
+                         package="compGenomRData")
+cpgi=read.table(cpgtFilePath,header=TRUE,sep="\t")
+head(cpgi)
+
+gcs <- cpgi$perGc
+boxplot(gcs)
+
+
+GCper=65
+
+# check if GC value is lower than 60, 
+# assign "low" to result
+if(GCper < 60){
+  result="low"
+  cat("low")
+} else if(GCper > 75){  # check if GC value is higher than 75,      
+  #assign "high" to result
+  result="high"
+  cat("high")
+}else{ # if those two conditions fail then it must be "medium"
+  result="medium"
+}
+
+result
+
+measureGC <- function(value) {
+  if(value < 60){
+    result="low"
+    cat("low")
+  } else if(value > 75){  # check if GC value is higher than 75,      
+    #assign "high" to result
+    result="high"
+    cat("high")
+  }else{ # if those two conditions fail then it must be "medium"
+    result="medium"
+  }
+  
+  print(result)
+  
+}
+
+measureGC(45)
+
+gcValues=c(10,50,70,65,90)
+for (i in gcValues) {
+  measureGC(i)
+}
+
+vec=c(1,2,4,5)
+power2=function(x){ return(measureGC(x))  }
+lapply(gcs,power2)
+
+sapply(gcValues, measureGC)
+
+
