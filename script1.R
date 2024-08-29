@@ -377,4 +377,5 @@ lapply(gcs,power2)
 
 sapply(gcValues, measureGC)
 
+cpgi[cpgi$perGc < 60, ]
 
